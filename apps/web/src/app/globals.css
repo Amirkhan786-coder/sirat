@@ -1,0 +1,1327 @@
+@import "tailwindcss";
+
+:root {
+  --green: #064b32;
+  --deep-green: #003d29;
+  --gold: #d9a928;
+  --gold-light: #f3d98a;
+  --cream: #f8f5e9;
+  --ink: #063d2b;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #edf0df;
+  font-family: Arial, Helvetica, sans-serif;
+}
+button, a, select { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+
+.sirat-shell {
+  min-height: 100vh;
+  display: flex;
+  background:
+    radial-gradient(ellipse at 75% 12%, rgba(255,255,255,.55), transparent 50%),
+    linear-gradient(125deg,#e6efdc,#f4f3e7 55%,#e5eedc);
+}
+.sirat-sidebar {
+  width: 250px;
+  flex: 0 0 250px;
+  min-height: 100vh;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 13px 14px 18px;
+  color: #fff9dc;
+  background:
+    radial-gradient(ellipse at 48% 12%,rgba(20,112,71,.42),transparent 40%),
+    linear-gradient(160deg,#005238,#003c2b 65%,#003523);
+  border-right: 3px solid #d9ad3e;
+  box-shadow: 5px 0 18px rgba(20,65,42,.12);
+  z-index: 30;
+}
+.brand { text-align: center; padding: 4px 3px 8px; }
+.brand-emblem {
+  width: 125px;
+  height: 105px;
+  margin: 0 auto 1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f5ca55;
+}
+.brand-crescent { position: absolute; left: 8px; top: 5px; transform: rotate(-20deg); filter: drop-shadow(0 2px 3px #8c6a20); }
+.brand-mosque { position: absolute; bottom: 12px; left: 33px; width: 65px; height: 42px; }
+.mosque-dome { position:absolute; bottom:15px; left:17px; width:30px; height:25px; border-radius:50% 50% 0 0; background:#f5ca55; }
+.mosque-dome:after { content:""; position:absolute; left:13px; top:-12px; height:13px; border-left:2px solid #f5ca55; }
+.mosque-minaret { position:absolute; bottom:14px; width:7px; height:30px; background:#f5ca55; }
+.mosque-minaret:before { content:""; position:absolute; top:-7px; left:-2px; border-left:5px solid transparent; border-right:5px solid transparent; border-bottom:9px solid #f5ca55; }
+.mosque-minaret.left { left:4px; }
+.mosque-minaret.right { right:4px; height:35px; }
+.mosque-base { position:absolute; bottom:8px; left:0; width:65px; height:7px; border-top:2px solid #f5ca55; border-bottom:2px solid #f5ca55; }
+.brand-star { position:absolute; right:13px; top:13px; fill:#f5ca55; }
+.brand-name { color:#f3ca63; font: bold 34px Georgia,serif; letter-spacing:4px; line-height:1.1; text-shadow:0 2px 3px #513b13; }
+.brand-tagline { color:#fff8e2; font-size:12px; margin-top:3px; }
+.brand-divider { height:1px; background:linear-gradient(90deg,transparent,#d8b34e,transparent); margin:18px 3px 15px; position:relative; }
+.brand-divider span { position:absolute; top:-11px; left:calc(50% - 10px); color:#f0c65e; background:#03452f; padding:0 5px; font-size:17px; }
+.side-navigation { flex:1; }
+.nav-group { margin-bottom:15px; }
+.nav-heading { color:#f1c84f; font-size:11px; font-weight:800; letter-spacing:1.25px; margin:3px 7px 8px; }
+.nav-link { min-height:43px; padding:9px 10px; display:flex; align-items:center; gap:14px; border-radius:12px; color:#f4f2df; font-size:14px; font-weight:500; margin:3px 0; transition:.2s; }
+.nav-link svg { color:#f2ca66; flex-shrink:0; }
+.nav-link:hover { background:rgba(255,255,255,.1); }
+.nav-link.nav-active { color:#123d2b; font-weight:700; background:linear-gradient(110deg,#fff4c9,#ead28d); box-shadow:0 2px 7px rgba(0,0,0,.15); }
+.nav-active svg { color:#14543a; }
+.sidebar-bottom { text-align:center; color:#d5bd72; font-size:9px; letter-spacing:2px; padding:14px 0 0; border-top:1px solid rgba(233,203,115,.35); }
+
+.sirat-main { min-width:0; flex:1; }
+.topbar {
+  min-height:81px;
+  display:flex;
+  align-items:center;
+  padding:12px 27px;
+  gap:16px;
+  border-bottom:2px solid #d9ad37;
+  background:
+    repeating-linear-gradient(45deg,rgba(196,170,94,.035) 0 2px,transparent 2px 9px),
+    linear-gradient(100deg,#eaf1d9,#f8f6e7 60%,#e8f0db);
+}
+.greeting-seal { width:52px; height:52px; display:grid; place-items:center; border:2px solid #d6b14e; border-radius:50%; color:#c99e31; font-size:36px; flex-shrink:0; }
+.greeting h2 { font: bold 22px Georgia,serif; margin:0 0 4px; color:#073c2b; }
+.greeting p { margin:0; font-size:12px; color:#213d2d; }
+.top-actions { margin-left:auto; display:flex; align-items:center; gap:17px; }
+.language-wrap { height:43px; display:flex; align-items:center; gap:9px; padding:0 12px; border:1.5px solid #d5a72c; border-radius:15px; background:#f8f6e9; color:#06442f; }
+.language-wrap select { border:0; outline:0; background:transparent; color:#143c2c; font-weight:700; font-size:12px; appearance:none; cursor:pointer; }
+.top-icon { position:relative; border:0; background:transparent; color:#06432e; padding:7px; }
+.top-icon svg { width:23px; height:23px; }
+.notification-count { position:absolute; right:-1px; top:-3px; display:grid; place-items:center; width:19px; height:19px; border-radius:50%; color:white; background:#d51f18; font-size:10px; font-weight:800; border:1px solid white; }
+.profile-button { width:47px; height:47px; border-radius:50%; border:3px solid #d6aa37; background:#075038; color:#fff4ca; font-size:20px; font-weight:700; }
+.mobile-menu { display:none; border:0; background:transparent; color:#06432e; }
+
+.dashboard-content { padding:14px 26px 20px; max-width:1800px; margin:auto; }
+.welcome-row { display:flex; align-items:center; justify-content:space-between; gap:15px; margin:0 0 14px; }
+.welcome-row h1 { margin:0; color:#063d2b; font:bold 30px Georgia,serif; }
+.welcome-row p { margin:3px 0 0; font-size:14px; }
+.date-preview { display:flex; align-items:center; gap:8px; font-size:12px; color:#243d2e; }
+
+.location-panel {
+  min-height:88px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:13px 15px;
+  margin-bottom:17px;
+  border:2px solid #e0b338;
+  border-radius:19px;
+  background:linear-gradient(105deg,rgba(236,244,220,.96),rgba(222,237,210,.83));
+  box-shadow:inset 0 0 20px rgba(255,255,255,.4);
+}
+.location-left { display:flex; align-items:center; gap:13px; min-width:0; }
+.location-pin { width:53px; height:53px; display:grid; place-items:center; flex-shrink:0; border-radius:50%; color:#fff8df; background:#075238; }
+.location-left h3 { margin:0 0 4px; font-size:15px; }
+.location-left strong { display:block; font-size:14px; overflow-wrap:anywhere; }
+.location-left p { margin:3px 0 0; font-size:11px; }
+.location-actions { display:flex; align-items:center; gap:10px; }
+.outline-button,.refresh-button { height:43px; display:flex; align-items:center; justify-content:center; gap:9px; padding:0 14px; border:1.5px solid #d9a927; border-radius:14px; background:#f8f5e7; color:#153d2c; font-size:12px; font-weight:700; white-space:nowrap; }
+.refresh-button { width:46px; padding:0; }
+.outline-button:disabled,.refresh-button:disabled { opacity:.6; cursor:wait; }
+
+.prayer-panel {
+  min-height:294px;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  padding:12px 17px 10px;
+  margin-bottom:16px;
+  border:2px solid #e0b338;
+  border-radius:20px;
+  background:
+    radial-gradient(ellipse at 58% 38%,rgba(255,255,255,.7),transparent 52%),
+    linear-gradient(110deg,#e0efd9,#e9f2df 55%,#d5e9d2);
+}
+.prayer-panel:before {
+  content:"";
+  position:absolute; inset:0; z-index:-1; opacity:.22;
+  background-image:repeating-linear-gradient(45deg,transparent 0 17px,rgba(91,141,99,.16) 18px 19px,transparent 20px 36px);
+  mask-image:linear-gradient(90deg,transparent,#000 40%,#000);
+}
+.prayer-panel-top { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; position:relative; z-index:2; }
+.section-pill { display:inline-block; padding:7px 15px; border-radius:20px; color:#fff8dc; background:#075238; font-size:11px; font-weight:800; letter-spacing:1px; }
+.prayer-panel-top h2 { margin:5px 0 0; font:bold 38px Georgia,serif; color:#06432e; line-height:1.05; }
+.local-date { display:flex; align-items:center; gap:8px; padding:9px 13px; border:1px solid #d1d9c3; border-radius:25px; background:rgba(250,249,237,.82); color:#425443; font-size:11px; }
+.prayer-layout { display:grid; grid-template-columns:263px 1fr; gap:16px; align-items:center; margin-top:7px; position:relative; z-index:2; }
+.next-prayer-card { min-height:163px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; padding:15px 21px; border-radius:19px; color:#fffbe8; background:linear-gradient(135deg,#07543a,#003d2a); box-shadow:inset 0 0 30px rgba(255,255,255,.05); position:relative; overflow:hidden; }
+.next-prayer-card:after { content:""; position:absolute; width:170px; height:100px; right:-15px; bottom:-37px; opacity:.12; background:radial-gradient(ellipse at bottom,#d9c17c 0 25%,transparent 26%); }
+.next-prayer-card span { font-size:12px; font-weight:800; }
+.next-prayer-card strong { font-size:29px; line-height:1.5; }
+.next-time { display:flex; align-items:center; gap:10px; font-size:20px; font-weight:700; }
+.next-prayer-card p { margin:8px 0 0; font-size:13px; }
+.prayer-list { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); align-items:center; }
+.prayer-item { min-height:114px; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:8px; text-align:center; border-right:2px solid #d6a52b; color:#07543a; }
+.prayer-item:last-child { border-right:0; }
+.prayer-item h3 { margin:0; color:#092e20; font-size:16px; }
+.prayer-item strong { font-size:21px; color:#0b2f22; }
+.prayer-note { position:relative; z-index:2; margin:10px 0 0; font-size:11px; color:#284333; }
+.prayer-moon { position:absolute; top:25px; left:27%; color:rgba(91,151,112,.28); font-size:68px; }
+.prayer-mosque-silhouette { position:absolute; z-index:-1; right:0; bottom:0; width:52%; height:95px; opacity:.13; background:linear-gradient(transparent,rgba(40,112,67,.35)); clip-path:polygon(0 100%,0 82%,7% 82%,7% 60%,10% 60%,10% 80%,18% 80%,18% 53%,21% 53%,21% 32%,23% 53%,26% 53%,26% 80%,34% 80%,34% 60%,38% 60%,38% 80%,46% 80%,46% 42%,50% 42%,50% 10%,54% 42%,59% 42%,59% 80%,68% 80%,68% 57%,72% 57%,72% 80%,80% 80%,80% 47%,84% 47%,84% 25%,88% 47%,92% 47%,92% 80%,100% 80%,100% 100%); }
+
+.quick-section { margin-bottom:18px; }
+.section-heading { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.section-heading h2 { margin:0; font:bold 22px Georgia,serif; color:#063d2b; }
+.section-heading a { display:flex; align-items:center; gap:7px; font-size:12px; font-weight:700; }
+.quick-grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px; }
+.quick-card { min-height:89px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; border:2px solid #e3b22d; border-radius:16px; background:linear-gradient(135deg,#fff9e9,#f3efdc); color:#07543a; transition:.2s; }
+.quick-card:hover { transform:translateY(-3px); box-shadow:0 7px 16px rgba(32,70,42,.12); background:#fffdf3; }
+.quick-card strong { margin-top:2px; color:#103b2b; font-size:13px; }
+.quick-card span { color:#283c2d; font-size:11px; }
+
+.feature-banners { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.feature-banner { min-height:82px; display:flex; align-items:center; gap:14px; padding:12px 17px; border:2px solid #d9ad37; border-radius:19px; color:#fff3cf; box-shadow:0 4px 12px rgba(26,58,37,.08); transition:.2s; }
+.feature-banner:hover { transform:translateY(-2px); filter:brightness(1.06); }
+.banner-green { background:radial-gradient(circle at 80% 50%,rgba(221,184,92,.2),transparent 35%),linear-gradient(110deg,#00452f,#075b3d); }
+.banner-gold { background:radial-gradient(circle at 80% 50%,rgba(255,230,159,.2),transparent 35%),linear-gradient(110deg,#8c5715,#c08a30); }
+.feature-banner > svg { flex-shrink:0; }
+.feature-banner h3 { margin:0 0 3px; font:bold 19px Georgia,serif; }
+.feature-banner p { margin:0; font-size:12px; }
+.banner-arrow { margin-left:auto; width:39px; height:39px; flex-shrink:0; display:grid; place-items:center; border:1px solid rgba(246,224,165,.5); border-radius:50%; background:rgba(255,255,255,.17); }
+.dashboard-footer { padding:19px 0 4px; text-align:center; color:#7c8978; font-size:9px; letter-spacing:2px; }
+
+.mobile-overlay { display:none; }
+
+@media (min-width:1500px) {
+  .dashboard-content { padding-left:30px; padding-right:30px; }
+  .prayer-panel { min-height:315px; }
+  .next-prayer-card { min-height:175px; }
+}
+@media (max-width:1150px) {
+  .sirat-sidebar { width:220px; flex-basis:220px; }
+  .dashboard-content { padding-left:17px; padding-right:17px; }
+  .prayer-layout { grid-template-columns:220px 1fr; gap:8px; }
+  .next-prayer-card { padding:13px; }
+  .prayer-item h3 { font-size:13px; }
+  .quick-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+@media (max-width:800px) {
+  .sirat-sidebar { position:fixed; left:0; top:0; width:265px; transform:translateX(-105%); transition:transform .25s; }
+  .sirat-sidebar.sidebar-open { transform:translateX(0); }
+  .mobile-overlay { display:block; position:fixed; inset:0; z-index:20; border:0; background:rgba(0,0,0,.4); }
+  .mobile-menu { display:block; }
+  .topbar { min-height:72px; padding:10px 14px; gap:10px; }
+  .greeting-seal { width:42px; height:42px; font-size:29px; }
+  .greeting h2 { font-size:18px; }
+  .greeting p { font-size:10px; }
+  .top-actions { gap:6px; }
+  .language-wrap { height:38px; padding:0 8px; }
+  .top-icon { padding:5px; }
+  .profile-button { width:39px; height:39px; }
+  .dashboard-content { padding:14px 13px; }
+  .welcome-row h1 { font-size:25px; }
+  .date-preview { display:none; }
+  .prayer-layout { grid-template-columns:1fr; }
+  .next-prayer-card { min-height:130px; }
+  .prayer-list { grid-template-columns:repeat(3,minmax(0,1fr)); row-gap:12px; }
+  .prayer-item { min-height:95px; }
+  .prayer-item:nth-child(3) { border-right:0; }
+  .prayer-item:nth-child(4) { border-top:1px solid #d6a52b; padding-top:10px; }
+  .prayer-item:nth-child(5) { border-top:1px solid #d6a52b; padding-top:10px; }
+  .prayer-item:nth-child(6) { border-top:1px solid #d6a52b; border-right:0; padding-top:10px; }
+  .feature-banners { grid-template-columns:1fr; }
+}
+@media (max-width:480px) {
+  .greeting-seal { display:none; }
+  .greeting h2 { font-size:16px; }
+  .greeting p { display:none; }
+  .language-wrap { gap:4px; padding:0 6px; }
+  .language-wrap select { max-width:65px; font-size:10px; }
+  .top-actions { gap:3px; }
+  .top-icon svg { width:19px; }
+  .welcome-row h1 { font-size:23px; }
+  .location-panel { align-items:flex-start; flex-direction:column; }
+  .location-actions { width:100%; }
+  .outline-button { flex:1; }
+  .prayer-panel-top h2 { font-size:31px; }
+  .local-date { font-size:9px; padding:7px; }
+  .section-pill { font-size:9px; padding:6px 10px; }
+  .quick-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .quick-card { min-height:88px; }
+  .feature-banner { padding:11px; gap:10px; }
+  .feature-banner h3 { font-size:16px; }
+  .feature-banner p { font-size:10px; }
+}
+
+/* ===== SIRAT COMPLETE DASHBOARD ADDITIONS ===== */
+
+.top-location {
+  max-width: 210px;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 11px;
+  border: 1px solid #c8d8c3;
+  border-radius: 24px;
+  background: #f6f7e9;
+  color: #164a34;
+  font-size: 11px;
+  font-weight: 700;
+}
+.top-location span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.top-location:disabled { opacity: .6; }
+.top-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 14px;
+  border-left: 1px solid #d8dfcc;
+  color: #174831;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.top-date small {
+  display: inline-block;
+  margin-top: 3px;
+  color: #778574;
+  font-size: 9px;
+  font-weight: 400;
+}
+.content-grid-three {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+.info-card, .detail-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #d4d8c2;
+  border-radius: 16px;
+  background: linear-gradient(145deg,#fffdf2,#eef4e5);
+  box-shadow: 0 3px 9px rgba(29,67,43,.06);
+}
+.info-card { padding: 0 11px 11px; }
+.info-card-heading {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  border-bottom: 1px solid #d8dfce;
+}
+.info-card-heading > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #124a34;
+  font-size: 13px;
+  font-weight: 800;
+}
+.info-card-heading a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #15583d;
+  font-size: 10px;
+  font-weight: 700;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+.info-card-heading a svg { color: #c69b34; }
+.masjid-content, .community-content {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding-top: 11px;
+}
+.masjid-placeholder {
+  width: 104px;
+  height: 83px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border-radius: 10px;
+  background: linear-gradient(145deg,#dcebd9,#b6d2bd);
+  color: #286b4b;
+}
+.masjid-placeholder span {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+.masjid-details, .community-content > div:last-child { min-width: 0; }
+.masjid-details h3, .community-content h3 {
+  margin: 0 0 5px;
+  color: #163c2b;
+  font-size: 13px;
+}
+.masjid-details p, .community-content p {
+  margin: 0 0 7px;
+  color: #637466;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.small-green-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 18px;
+  background: #07543a;
+  color: #fff8dc;
+  font-size: 10px;
+  font-weight: 700;
+  transition: .2s;
+}
+.small-green-button:hover { background: #0b6a47; }
+.card-footnote {
+  margin: 9px 0 0;
+  color: #8b9586;
+  font-size: 9px;
+  line-height: 1.4;
+}
+.calendar-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 11px;
+}
+.hijri-date-placeholder {
+  width: 102px;
+  min-height: 86px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border: 1px solid #c6dcc9;
+  border-radius: 10px;
+  background: linear-gradient(145deg,#e2f0df,#c9e4d0);
+  color: #14543a;
+}
+.hijri-date-placeholder strong { font: bold 17px Georgia,serif; }
+.hijri-date-placeholder span { font-size: 10px; }
+.calendar-content h3 { margin: 0 0 6px; font-size: 13px; }
+.calendar-content p { margin: 0 0 5px; color: #657567; font-size: 10px; line-height: 1.5; }
+.calendar-content .event-label { color: #284b37; }
+.community-art {
+  width: 98px;
+  height: 83px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border-radius: 10px;
+  background: linear-gradient(145deg,#e4f0e7,#c6e0d1);
+  color: #1c7650;
+}
+.second-content-row { margin-top: 14px; }
+.detail-card {
+  min-height: 190px;
+  padding: 0 13px 12px;
+  text-align: center;
+}
+.detail-card-title {
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 -13px;
+  padding: 0 13px;
+  background: linear-gradient(100deg,#00553a,#08704b);
+  color: #fff9df;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: left;
+}
+.arabic-text {
+  margin: 12px 0 9px;
+  color: #101f17;
+  font-family: "Times New Roman",serif;
+  font-size: 27px;
+  line-height: 1.6;
+}
+.translation {
+  margin: 5px 0;
+  color: #192c20;
+  font-size: 13px;
+  font-weight: 500;
+}
+.reference {
+  margin: 5px 0 10px;
+  color: #415344;
+  font-size: 11px;
+}
+.text-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  border: 1px solid #267a53;
+  border-radius: 22px;
+  color: #14583c;
+  background: #fffef5;
+  font-size: 11px;
+  font-weight: 700;
+}
+.reading-card { text-align: left; }
+.reading-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 12px;
+}
+.quran-cover {
+  width: 83px;
+  height: 112px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 4px double #d3b65e;
+  border-radius: 5px;
+  background: linear-gradient(145deg,#064a32,#0a6845);
+  color: #f1d88b;
+  box-shadow: 0 4px 10px rgba(0,0,0,.13);
+}
+.quran-cover span { font: bold 9px Georgia,serif; letter-spacing: 1px; }
+.reading-info { min-width: 0; flex: 1; }
+.reading-info h3 { margin: 0 0 5px; font-size: 13px; }
+.reading-info p { margin: 0 0 9px; color: #68766a; font-size: 10px; }
+.reading-info small { color: #506652; font-size: 10px; }
+.progress-track, .mini-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #dfe6d7;
+}
+.progress-track { margin-bottom: 5px; }
+.progress-track span, .mini-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #07583b;
+  transition: width .25s ease;
+}
+.reading-controls { display: flex; gap: 6px; margin-top: 8px; }
+.reading-controls button {
+  width: 26px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #c9d7c6;
+  border-radius: 7px;
+  background: #f8f8eb;
+  color: #15553a;
+}
+.progress-strip {
+  display: grid;
+  grid-template-columns: 1.35fr .8fr 1.15fr;
+  align-items: center;
+  gap: 15px;
+  min-height: 91px;
+  margin: 14px 0;
+  padding: 12px;
+  border: 1px solid #d6dfcb;
+  border-radius: 17px;
+  background: linear-gradient(100deg,#f7f7e9,#edf2df);
+}
+.worship-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.progress-ring {
+  width: 65px;
+  height: 65px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: conic-gradient(#08724b var(--progress),#dce5d6 0);
+  position: relative;
+}
+.progress-ring:before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  background: #f4f5e8;
+}
+.progress-ring span {
+  position: relative;
+  z-index: 1;
+  color: #164e36;
+  font-size: 15px;
+  font-weight: 800;
+}
+.worship-info { min-width: 0; }
+.worship-info h3, .reading-progress-mini h3, .donation-mini h3 {
+  margin: 0 0 4px;
+  color: #173e2b;
+  font-size: 12px;
+}
+.worship-info p, .reading-progress-mini p, .donation-mini p {
+  margin: 0 0 6px;
+  color: #4d6251;
+  font-size: 10px;
+}
+.prayer-checklist { display: flex; flex-wrap: wrap; gap: 4px; }
+.prayer-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 4px 6px;
+  border: 1px solid #c9d6c5;
+  border-radius: 10px;
+  background: #fffef3;
+  color: #41614a;
+  font-size: 9px;
+}
+.prayer-check.checked {
+  border-color: #0b6946;
+  background: #dcecdf;
+  color: #075238;
+}
+.reading-progress-mini, .donation-mini {
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 13px;
+  border-left: 1px solid #bfcdb9;
+}
+.gold-star { flex-shrink: 0; color: #d6aa43; fill:#e8c66e; }
+.reading-progress-mini > div { min-width: 0; flex: 1; }
+.mini-track { height: 7px; max-width: 150px; }
+.donation-mini > svg { flex-shrink: 0; color: #176b48; }
+.donation-mini > div { min-width: 0; }
+.donate-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  padding: 10px 12px;
+  border-radius: 22px;
+  background: #eacb76;
+  color: #3f341b;
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.extra-features { margin: 22px 0 12px; }
+.extra-features .section-heading > span {
+  color: #a18a54;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+.extra-grid {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 9px;
+}
+.extra-card {
+  min-height: 85px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5px;
+  padding: 12px;
+  border: 1px solid #d8d9c5;
+  border-radius: 13px;
+  background: linear-gradient(145deg,#fffdf1,#edf3e5);
+  color: #15543a;
+  transition: .2s;
+}
+.extra-card:hover {
+  transform: translateY(-2px);
+  border-color: #d6ad4b;
+  box-shadow: 0 5px 14px rgba(23,72,43,.08);
+}
+.extra-card svg { width: 20px; height: 20px; }
+.extra-card strong { color: #173e2b; font-size: 12px; }
+.extra-card span { color: #788575; font-size: 10px; }
+.mobile-bottom-nav { display: none; }
+
+@media (max-width:1250px) {
+  .top-date { display: none; }
+  .content-grid-three { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .content-grid-three > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .progress-strip { grid-template-columns: 1fr 1fr; }
+  .donation-mini { grid-column: 1 / -1; border-left: 0; border-top: 1px solid #c7d3c0; padding: 10px 0 0; }
+}
+@media (max-width:800px) {
+  .top-location { display: none; }
+  .content-grid-three { grid-template-columns: 1fr; }
+  .content-grid-three > :last-child:nth-child(odd) { grid-column: auto; }
+  .progress-strip { grid-template-columns: 1fr; }
+  .reading-progress-mini, .donation-mini {
+    border-left: 0;
+    border-top: 1px solid #c7d3c0;
+    padding: 10px 0 0;
+  }
+  .mobile-bottom-nav {
+    position: fixed;
+    z-index: 18;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    min-height: 62px;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    align-items: center;
+    border-top: 1px solid #d9c78e;
+    background: rgba(250,249,237,.97);
+    box-shadow: 0 -4px 14px rgba(20,60,38,.08);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .mobile-bottom-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    color: #15543a;
+    font-size: 9px;
+    font-weight: 700;
+  }
+  .mobile-bottom-nav svg { width: 19px; height: 19px; }
+  .dashboard-content { padding-bottom: 85px; }
+}
+@media (max-width:480px) {
+  .extra-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .worship-progress { align-items: flex-start; }
+  .progress-ring { width: 55px; height: 55px; }
+  .prayer-checklist { max-width: 230px; }
+  .masjid-placeholder, .community-art { width: 88px; }
+  .calendar-content { align-items: flex-start; }
+  .hijri-date-placeholder { width: 85px; }
+  .donation-mini { flex-wrap: wrap; }
+  .donate-button { margin-left: auto; }
+  .date-preview { display: none; }
+}
+
+/* ===== SIRAT SUBTLE MOSQUE TEXTURE ===== */
+
+.sirat-main {
+  position: relative;
+  isolation: isolate;
+  background-color: #f5f5e9;
+  background-image:
+    radial-gradient(ellipse at 12% 15%, rgba(199,174,105,.09), transparent 38%),
+    radial-gradient(ellipse at 90% 42%, rgba(24,91,57,.055), transparent 40%);
+}
+
+.sirat-main::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .075;
+  background-repeat: repeat;
+  background-size: 440px 440px;
+  background-position: center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='440' height='440' viewBox='0 0 440 440'%3E%3Cg fill='none' stroke='%23134e36' stroke-width='2'%3E%3Cpath d='M45 350V190Q45 130 105 100Q165 130 165 190V350M65 350V205Q65 155 105 130Q145 155 145 205V350'/%3E%3Cpath d='M85 350V235Q85 190 105 175Q125 190 125 235V350'/%3E%3Cpath d='M75 100L105 45L135 100M96 60V35M105 20V35'/%3E%3Cpath d='M195 350V220Q195 120 275 85Q355 120 355 220V350M220 350V220Q220 145 275 115Q330 145 330 220V350'/%3E%3Cpath d='M245 350V230Q245 165 275 150Q305 165 305 230V350'/%3E%3Cpath d='M245 95L275 35L305 95M266 50V25M275 10V25'/%3E%3Cpath d='M15 350H410M30 370H390M60 390H360'/%3E%3Cpath d='M105 270V300M275 270V300M105 320V335M275 320V335'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.dashboard-content {
+  position: relative;
+  z-index: 1;
+}
+
+.topbar,
+.location-panel,
+.info-card,
+.detail-card,
+.quick-card,
+.extra-card,
+.progress-strip {
+  backdrop-filter: blur(2px);
+}
+
+/* Mosque watermark inside the location panel */
+.location-panel {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.location-panel::after {
+  content: "?";
+  position: absolute;
+  z-index: -1;
+  right: 8%;
+  top: -42px;
+  color: rgba(211,178,95,.13);
+  font-family: Georgia,serif;
+  font-size: 190px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.location-panel::before {
+  content: "";
+  position: absolute;
+  right: 15%;
+  bottom: 0;
+  width: 180px;
+  height: 90px;
+  opacity: .11;
+  pointer-events: none;
+  background: linear-gradient(to top,#c4a65d,transparent);
+  clip-path: polygon(0 100%,0 70%,18% 70%,18% 52%,28% 52%,28% 70%,36% 70%,50% 15%,64% 70%,72% 70%,72% 52%,82% 52%,82% 70%,100% 70%,100% 100%);
+}
+
+/* Compact dashboard without removing any features */
+.dashboard-content {
+  padding-top: 12px;
+}
+
+.welcome-row {
+  margin-bottom: 10px;
+}
+
+.welcome-row h1 {
+  margin-bottom: 3px;
+}
+
+.location-panel {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.prayer-panel {
+  margin-top: 10px;
+  margin-bottom: 13px;
+  padding-top: 15px;
+  padding-bottom: 13px;
+}
+
+.quick-section {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.quick-grid {
+  gap: 8px;
+}
+
+.quick-card {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.feature-banners {
+  gap: 9px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.feature-banner {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.content-grid-three {
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.info-card {
+  padding-bottom: 9px;
+}
+
+.detail-card {
+  min-height: 175px;
+}
+
+.progress-strip {
+  min-height: 80px;
+  margin-top: 11px;
+  margin-bottom: 11px;
+  padding: 10px;
+}
+
+.extra-features {
+  margin-top: 17px;
+}
+
+.extra-grid {
+  gap: 8px;
+}
+
+.extra-card {
+  min-height: 76px;
+  padding: 10px;
+}
+
+/* Slightly softer mosque texture on smaller screens */
+@media (max-width: 800px) {
+  .sirat-main::before {
+    opacity: .055;
+    background-size: 330px 330px;
+  }
+
+  .location-panel::after {
+    right: -15px;
+    font-size: 135px;
+  }
+
+  .dashboard-content {
+    padding-top: 9px;
+  }
+}
+
+
+/* ===== SIRAT MOSQUE SILHOUETTE BACKGROUND ===== */
+
+:root {
+  --mosque-art: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 300'%3E%3Cg fill='%2316533a' fill-opacity='.19'%3E%3Cpath d='M0 270V205h45v-35h18v35h35v65zm100 0v-75h55v-30h18v30h55v75zm-8-75q45-95 90 0zM250 270V180h55v-35h18v35h55v90zm-5-90q48-115 96 0zM370 270V160h75v-45h20v45h75v110zm-8-110q50-135 102 0zM535 270V185h60v-35h18v35h60v85zm-5-85q48-105 96 0zM675 270V195h55v-35h18v35h55v75zm-5-75q45-95 90 0zM810 270V175h65v-40h18v40h65v95zm-5-95q48-120 96 0zM955 270v-80h45v80z'/%3E%3Cpath d='M40 170V70h12V45h12v25h12v100zm-8-100q20-42 40 0zM270 145V35h13V10h13v25h13v110zm-8-110q22-45 44 0zM455 115V20h13V0h13v20h13v95zm-8-95q22-42 44 0zM710 160V55h13V30h13v25h13v105zm-8-105q22-45 44 0zM900 135V25h13V0h13v25h13v110zm-8-110q22-45 44 0z'/%3E%3Cpath d='M0 270h1000v30H0z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Overall page: faint mosque pattern */
+.sirat-main {
+  background-color: #f5f5e9;
+  background-image:
+    linear-gradient(rgba(247,248,235,.88), rgba(247,248,235,.88)),
+    var(--mosque-art);
+  background-repeat: repeat;
+  background-size: auto, 620px 190px;
+  background-position: center, center bottom;
+}
+
+/* Location panel: larger mosque across the background */
+.location-panel {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background-image:
+    linear-gradient(90deg, rgba(239,246,222,.96) 0%, rgba(239,246,222,.78) 48%, rgba(239,246,222,.45) 100%),
+    var(--mosque-art);
+  background-repeat: no-repeat;
+  background-size: cover, 560px 170px;
+  background-position: center, right bottom;
+}
+
+/* Prayer panel: mosque silhouette visible along the bottom */
+.prayer-panel {
+  background-image:
+    linear-gradient(rgba(226,242,216,.28), rgba(226,242,216,.28)),
+    var(--mosque-art);
+  background-repeat: no-repeat, repeat-x;
+  background-size: cover, 720px 210px;
+  background-position: center, center bottom;
+}
+
+/* Continue Reading and related feature banners */
+[class*="continue-reading"],
+.continue-reading,
+.feature-banner {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background-image:
+    linear-gradient(90deg, rgba(5,75,47,.12), rgba(5,75,47,.35)),
+    var(--mosque-art);
+  background-repeat: no-repeat;
+  background-size: cover, 250px 90px;
+  background-position: center, right bottom;
+}
+
+/* Keep card content above the decorative artwork */
+.location-panel > *,
+.prayer-panel > *,
+[class*="continue-reading"] > *,
+.continue-reading > *,
+.feature-banner > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .location-panel {
+    background-size: cover, 360px 120px;
+  }
+
+  .prayer-panel {
+    background-size: cover, 480px 150px;
+  }
+
+  .sirat-main {
+    background-size: auto, 420px 130px;
+  }
+}
+
+
+/* ===== PREMIUM SIRAT CUSTOM LOGO ===== */
+.brand {
+  text-align: center;
+  padding: 7px 3px 8px;
+}
+
+.brand-emblem {
+  width: 150px;
+  height: 132px;
+  margin: 0 auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: #f2cc68;
+}
+
+.sirat-logo-svg {
+  width: 146px;
+  height: 128px;
+  overflow: visible;
+  filter: drop-shadow(0 3px 5px rgba(0,0,0,.28));
+}
+
+.brand-name {
+  color: #f4d17a;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 35px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  line-height: 1.12;
+  text-shadow: 0 2px 5px rgba(0,0,0,.4);
+}
+
+.brand-tagline {
+  color: #fff4d5;
+  font-size: 11px;
+  letter-spacing: .25px;
+  margin-top: 5px;
+}
+
+.brand-divider {
+  margin-top: 17px;
+}
+
+@media (max-width: 800px) {
+  .brand-emblem {
+    width: 140px;
+    height: 120px;
+  }
+  .sirat-logo-svg {
+    width: 136px;
+    height: 118px;
+  }
+}
+
+
+/* ==========================================
+   SIRAT � ORIGINAL SOFT MOSQUE THEME
+   CSS ONLY � NO IMAGE FILES
+========================================== */
+
+/* Main dashboard background */
+.sirat-main {
+  background:
+    radial-gradient(ellipse at 72% 18%, rgba(255,255,235,.72), transparent 42%),
+    radial-gradient(ellipse at 15% 78%, rgba(177,220,183,.28), transparent 45%),
+    repeating-linear-gradient(45deg, rgba(190,160,70,.035) 0 1px, transparent 1px 12px),
+    linear-gradient(120deg, #e8f1df 0%, #f4f3df 48%, #e1efdf 100%) !important;
+  background-attachment: fixed !important;
+}
+
+/* Remove the previous oversized mosque drawings */
+.sirat-main::before,
+.sirat-main::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Prayer schedule � soft shaded mosque atmosphere */
+.prayer-times-card,
+.prayer-section,
+.prayer-panel,
+.prayer-card {
+  background-color: #e7f0df !important;
+  background-image:
+    linear-gradient(90deg, rgba(239,246,226,.82), rgba(239,246,226,.52)),
+    radial-gradient(ellipse 9% 24% at 23% 78%, rgba(39,105,76,.12) 0 65%, transparent 68%),
+    radial-gradient(ellipse 12% 28% at 28% 78%, rgba(39,105,76,.13) 0 65%, transparent 68%),
+    radial-gradient(ellipse 10% 24% at 34% 78%, rgba(39,105,76,.11) 0 65%, transparent 68%),
+    linear-gradient(90deg, transparent 20%, rgba(39,105,76,.10) 20% 21%, transparent 21% 30%, rgba(39,105,76,.10) 30% 31%, transparent 31%),
+    repeating-linear-gradient(45deg, rgba(190,160,70,.035) 0 1px, transparent 1px 12px) !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+/* Next prayer card � subtle mosque texture inside */
+.next-prayer-card,
+.next-prayer,
+.prayer-next-card {
+  background-color: #07563d !important;
+  background-image:
+    linear-gradient(90deg, rgba(0,76,52,.96) 0%, rgba(0,76,52,.78) 55%, rgba(0,76,52,.52) 100%),
+    radial-gradient(ellipse 24% 38% at 78% 100%, rgba(183,205,143,.28) 0 65%, transparent 68%),
+    radial-gradient(ellipse 18% 30% at 85% 100%, rgba(183,205,143,.22) 0 65%, transparent 68%),
+    linear-gradient(90deg, transparent 74%, rgba(183,205,143,.20) 74% 77%, transparent 77% 88%, rgba(183,205,143,.18) 88% 91%, transparent 91%) !important;
+  background-size: cover !important;
+  background-position: center !important;
+  overflow: hidden;
+}
+
+/* Keep cards clean and preserve gold borders */
+.prayer-times-card,
+.prayer-section,
+.prayer-panel,
+.prayer-card,
+.next-prayer-card,
+.next-prayer,
+.prayer-next-card {
+  background-repeat: no-repeat !important;
+  border-color: #d9a928;
+}
+
+
+/* ===== AYAH, DAILY DUA & CONTINUE READING CARDS ===== */
+
+.feature-banners {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+}
+
+.feature-banners > :nth-child(1),
+.feature-banners > :nth-child(3) {
+  background: linear-gradient(135deg, #07583c, #003824) !important;
+  color: #fff8e5 !important;
+  border: 1.5px solid #d9ad37 !important;
+}
+
+.feature-banners > :nth-child(2) {
+  background: linear-gradient(135deg, #f5df9b, #dfbd62) !important;
+  color: #17452f !important;
+  border: 1.5px solid #d9ad37 !important;
+}
+
+.feature-banners > * {
+  min-height: 100px !important;
+  padding: 16px !important;
+  border-radius: 18px !important;
+}
+
+.feature-banners > :nth-child(1) h3,
+.feature-banners > :nth-child(1) p,
+.feature-banners > :nth-child(3) h3,
+.feature-banners > :nth-child(3) p {
+  color: #fff8e5 !important;
+}
+
+.feature-banners > :nth-child(2) h3,
+.feature-banners > :nth-child(2) p {
+  color: #17452f !important;
+}
+
+@media (max-width: 700px) {
+  .feature-banners {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ===== FINAL PRAYER PANEL SPACING ===== */
+
+.prayer-panel {
+  padding-top: 5px !important;
+  padding-bottom: 12px !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+.prayer-panel-top {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  margin-bottom: 8px !important;
+}
+
+.prayer-panel-top h2 {
+  margin-top: 0 !important;
+  margin-bottom: 5px !important;
+}
+
+.prayer-layout {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  display: grid !important;
+  grid-template-columns: 230px minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 14px !important;
+}
+
+/* Preserve the large next-prayer square and horizontal prayer timings */
+.next-prayer-card {
+  margin: 0 !important;
+}
+
+.prayer-list {
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  align-items: center !important;
+}
+
+/* ===== THREE HORIZONTAL FEATURE CARDS ===== */
+
+.feature-banners {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+}
+
+.feature-banners > :nth-child(1),
+.feature-banners > :nth-child(3) {
+  background: #064b32 !important;
+  color: #fff8e5 !important;
+  border-color: #d9ad37 !important;
+}
+
+.feature-banners > :nth-child(2) {
+  background: #e7c66e !important;
+  color: #17452f !important;
+  border-color: #d9ad37 !important;
+}
+
+.feature-banners > :nth-child(1) *,
+.feature-banners > :nth-child(3) * {
+  color: #fff8e5 !important;
+}
+
+.feature-banners > :nth-child(2) * {
+  color: #17452f !important;
+}
+
+
+/* ===== REMOVE EXCESS TOP SPACE FROM PRAYER PANEL ===== */
+
+.prayer-panel {
+  display: block !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 14px 20px 12px !important;
+  justify-content: flex-start !important;
+  align-content: start !important;
+  row-gap: 0 !important;
+  overflow: hidden !important;
+}
+
+.prayer-panel::before,
+.prayer-panel::after {
+  content: none !important;
+  display: none !important;
+}
+
+.prayer-moon,
+.prayer-mosque-silhouette {
+  display: none !important;
+}
+
+.prayer-panel-top {
+  position: relative !important;
+  inset: auto !important;
+  margin: 0 0 10px !important;
+  padding: 0 !important;
+  transform: none !important;
+}
+
+.prayer-layout {
+  position: relative !important;
+  inset: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+  align-items: center !important;
+}
+
+
+/* ===== PRAYER TIMES: HEIGHT REDUCED BY HALF ===== */
+
+.prayer-panel {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  height: 320px !important;
+  min-height: 320px !important;
+  max-height: 320px !important;
+  padding: 12px 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  gap: 6px !important;
+  overflow: hidden !important;
+}
+
+.prayer-panel-top {
+  margin: 0 !important;
+  padding: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.prayer-panel-top h2 {
+  margin: 2px 0 6px !important;
+  font-size: 30px !important;
+}
+
+.prayer-layout {
+  margin: 0 !important;
+  padding: 0 !important;
+  flex: 1 !important;
+  min-height: 0 !important;
+  display: grid !important;
+  grid-template-columns: 230px minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.next-prayer-card {
+  height: 145px !important;
+  min-height: 145px !important;
+  padding: 12px !important;
+  box-sizing: border-box !important;
+}
+
+.prayer-list {
+  min-height: 145px !important;
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  align-items: center !important;
+}
+
+.prayer-note {
+  margin: 0 !important;
+  padding: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.prayer-moon,
+.prayer-mosque-silhouette {
+  display: none !important;
+}
+
